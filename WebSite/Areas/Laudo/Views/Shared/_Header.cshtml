@@ -1,0 +1,26 @@
+﻿<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="row">
+            @*<div class="col-md-10 col-md-offset-1">*@
+                <div class="navbar-header">
+                    <!-- Mobile Toggle Menu Button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle visible-xs-block" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>*@
+                    <a class="navbar-brand" href="/"><img style="height: 70px;" src="~/Images/logo.png" /></a>
+                </div>
+                <div id="myNavbar" class="navbar-collapse collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Laudos", "Index", "Home", new { area = "Laudo" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Relatórios", "Relatorio", "Home", new { area = "Laudo" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Outros", "Outros", "Home", new { area = "Laudo" }, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Sair", "Logout", "Conta", new { area = "Laudo" }, new { @class = "navbar-brand" })</li>
+                    </ul>
+                </div>
+            @*</div>*@
+        </div>
+    </div>
+</nav>

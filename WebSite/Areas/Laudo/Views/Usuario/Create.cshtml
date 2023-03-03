@@ -1,0 +1,44 @@
+﻿<link rel="stylesheet" href="~/Content/main.css" />
+
+@model AppServices.Dtos.UsuarioDto
+
+@{
+    ViewBag.Title = "Novo";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section id="create_usuario" class="main special">
+        <div class="container">
+            <div class="content">
+                <header class="major">
+                    <h2>Novo Usuário</h2>
+                </header>
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.UsuarioNome, new { htmlAttributes = new { @placeholder = "Nome", @required = "required", @type = "text" } })
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        @Html.EditorFor(model => model.UsuarioEmail, new { htmlAttributes = new { @placeholder = "E-mail", @required = "required", @type = "email" } })
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.UsuarioNomeUsuario, new { htmlAttributes = new { @placeholder = "Nome de usuário", @required = "required", @type = "text" } })
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.UsuarioSenha, new { htmlAttributes = new { @placeholder = "Senha", @required = "required", @type = "password" } })
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.ConfirmarSenha, new { htmlAttributes = new { @placeholder = "Confirmar Senha", @required = "required", @type = "password" } })
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li>@Html.ActionLink("Cancelar", "Index", "Usuario", null, new { @class = "button special scrolly" })</li>
+                            <li><input type="submit" value="Cadastrar" class="button special scrolly" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

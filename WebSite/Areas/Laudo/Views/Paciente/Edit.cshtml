@@ -1,0 +1,82 @@
+﻿<link rel="stylesheet" href="~/Content/main.css" />
+
+@model AppServices.Dtos.PacienteDto
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myform" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PacienteId)
+
+    <section id="edit_paciente" class="main special">
+        <div class="container">
+            <div class="content">
+                <header class="major">
+                    <h2>Alterar Paciente</h2>
+                </header>
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.PacienteNome, new { htmlAttributes = new { @placeholder = "Nome", @required = "required" } })
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <input type="text" id="dtNascimento" placeholder="Data nascimento" required="required" maxlength="10" onkeypress="mascaraData(this)" />
+                        <input type="text" id="PacienteDataNascimento" name="PacienteDataNascimento" style="visibility: collapse; display: none;" />
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li>@Html.ActionLink("Cancelar", "Index", "Paciente", null, new { @class = "button special scrolly" })</li>
+                            <li><input type="submit" value="Alterar" class="button special scrolly" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@{
+    var dtNascimento = Model.PacienteDataNascimento.ToString("dd/MM/yyyy");
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#dtNascimento").val('@Html.Raw(dtNascimento)');
+        });
+
+        $("#dtNascimento").on("click", function () {
+            $(this).select();
+        });
+
+        $('#myform').submit(function (event) {
+
+            event.preventDefault(); //this will prevent the default submit
+
+            var dt = $("#dtNascimento").val();
+            if (dt.length != 10) {
+                alert('Data de nascimento inválida');
+                return false;
+            }
+
+            var dia = dt.substring(0, 2);
+            if (dia < 1 || dia > 31) {
+                alert('Dia deve ser um inteiro entre 1 e 31');
+                return false;
+            }
+            var mes = dt.substring(3, 5);
+            if (mes < 1 || mes > 12) {
+                alert('Mês deve ser um inteiro entre 1 e 12');
+                return false;
+            }
+            var ano = dt.substring(6, 10);
+
+            $("#PacienteDataNascimento").val(mes + '/' + dia + '/' + ano);
+
+            $(this).unbind('submit').submit(); // continue the submit unbind preventDefault
+        });
+    </script>
+}

@@ -1,0 +1,38 @@
+﻿<link rel="stylesheet" href="~/Content/main.css" />
+
+<section id="details_usuario" class="main">
+    <div class="container">
+        <div class="content">
+            <header class="major">
+                <h2>Usuário</h2>
+            </header>
+            <section>
+                <ul class="actions">
+                    <li><a href="~/Laudo/Usuario/Create" class="button special scrolly">Novo</a></li>
+                </ul>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Nome de usuário</th>
+                                <th>Alterar</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Administrador</td>
+                                <td>contato@methodsinformatica.com.br</td>
+                                <td>admin</td>
+                                <td>@Html.ActionLink("Alterar", "Edit")</td>
+                                <td>@Html.ActionLink("Excluir", "Index")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

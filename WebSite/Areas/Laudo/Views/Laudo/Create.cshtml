@@ -1,0 +1,495 @@
+﻿@model AppServices.Dtos.LaudoDto
+
+@{
+    ViewBag.Title = "Novo";
+}
+
+<link rel="stylesheet" href="~/Content/jquery-ui.min.css" />
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myform" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.LaudoConclusoesId, new { @id = "idsConclusoes" })
+    @Html.HiddenFor(m => m.LaudoDtRealizacao, new { @id = "vDtRealizacao" })
+
+    <section id="one" class="main special">
+        <div class="container">
+            <div class="content">
+                <header class="major">
+                    <h2>Novo Laudo</h2>
+                </header>
+                <p>Dados paciente</p>
+                <div class="row uniform">
+                    <div class="12u 12u$(xsmall)" style="text-align: right">
+                        <button type="button" class="button special scrolly" data-toggle="modal" data-target="#exampleModal2">Novo solicitante</button>
+                        <button type="button" class="button special scrolly" data-toggle="modal" data-target="#exampleModal">Novo paciente</button>
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        <input type="text" name="nomepaciente" id="nomepaciente" placeholder="Nome Paciente" required />
+                        @Html.HiddenFor(model => model.LaudoPacienteId, new { @id = "pacienteId" })
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <input type="text" name="datanascimento" id="pacienteDtNasc" readonly placeholder="Data Nascimento" required />
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        <input type="text" name="idade" id="pacienteIdade" readonly placeholder="Idade" required />
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div class="select-wrapper">
+                            @Html.DropDownListFor(m => m.LaudoConvenioId, Model.ListConvenios, "- Convênio -", new { @required = "required" })
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top:30px">Dados do laudo</p>
+                <div class="row uniform">
+                    <div class="6u$ 12u$(xsmall)">
+                        <div class="input-append date form_datetime">
+                            <input size="16" type="text" value="" id="dtRealizacao" readonly required placeholder="Data realização do laudo">                            
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        <div class="select-wrapper">
+                            <input type="text" name="cb-laudador" id="cb-laudador" placeholder="Médico que laudou" required />
+                            @Html.HiddenFor(model => model.LaudoMedicoLaudadorId, new { @id = "laudadorId" })
+                            @*@Html.DropDownListFor(m => m.LaudoMedicoLaudadorId, Model.ListMedicos, "Médico que laudou", new { @required = "required" })*@
+                        </div>
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <div class="select-wrapper">
+                            <input type="text" name="cb-solicitante" id="cb-solicitante" placeholder="Médico que solicitou" required />
+                            @Html.HiddenFor(model => model.LaudoMedicoSolicitanteId, new { @id = "solicitanteId" })
+                            @*@Html.DropDownListFor(m => m.LaudoMedicoSolicitanteId, Model.ListMedicos, "Médico que solicitou", new { @required = "required" })*@
+                        </div>
+                    </div>
+                    <div class="12u">
+                        <div class="select-wrapper">
+                            <input type="text" name="cb-ritmo" id="cb-ritmo" placeholder="- Ritmo -" required />
+                            @Html.HiddenFor(model => model.LaudoRitmoId, new { @id = "ritmoId" })
+                        </div>
+                    </div>
+                    <div class="12u">
+                        <div class="select-wrapper">
+                            <input type="text" name="cb-conclusao" id="cb-conclusao" placeholder="- Conclusão -" required />
+                        </div>
+                    </div>
+                    <div class="12u">
+                        <div class="table-wrapper">
+                            <table id="table-conclusoes">
+                                <thead>
+                                    <tr>
+                                        <th>Conclusão</th>
+                                        <th>Excluir</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="12u$">
+                        @Html.TextAreaFor(m => m.LaudoComplemento, new { @rows = "6", @placeholder = "Complemento" })
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><input type="submit" value="Cadastrar" class="button special scrolly" onclick="addParams(this)" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Novo Paciente</h5>
+            </div>
+            <div class="modal-body">
+                <section id="create_paciente" class="main special">
+                    <div class="row uniform">
+                        <div class="6u 12u$(xsmall)">
+                            <input placeholder="Nome" id="modalNome" />
+                            @*@Html.EditorFor(model => model.PacienteNome, new { htmlAttributes = new { @placeholder = "Nome", @required = "required" } })*@
+                        </div>
+                        <div class="6u$ 12u$(xsmall)">
+                            <input placeholder="Data nascimento" id="modalData" onkeypress="mascaraData(this)" maxlength="10" />
+                            @*@Html.EditorFor(model => model.PacienteDataNascimento, new { htmlAttributes = new { @id = "dtNascimento", @placeholder = "Data nascimento", @type = "text", @required = "required", @maxlength = "10", @onkeypress = "mascaraData(this)" } })*@
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button special scrolly" data-dismiss="modal">Cancelar</button>
+                <button id="btn_submit" type="button" class="button special scrolly">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal2 -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Novo solicitante</h5>
+            </div>
+            <div class="modal-body">
+                <section id="create_paciente" class="main special">
+                    <div class="row uniform">
+                        <div class="6u 12u$(xsmall)">
+                            <input placeholder="Nome" id="modalNomeSolicitante" />
+                            @*@Html.EditorFor(model => model.PacienteNome, new { htmlAttributes = new { @placeholder = "Nome", @required = "required" } })*@
+                        </div>
+                        <div class="6u$ 12u$(xsmall)">
+                            <input placeholder="CRM" id="modalCRM" />
+                            @*@Html.EditorFor(model => model.PacienteDataNascimento, new { htmlAttributes = new { @id = "dtNascimento", @placeholder = "Data nascimento", @type = "text", @required = "required", @maxlength = "10", @onkeypress = "mascaraData(this)" } })*@
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button special scrolly" data-dismiss="modal">Cancelar</button>
+                <button id="btn_submit2" type="button" class="button special scrolly">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(".form_datetime").datetimepicker({
+            format: "dd/mm/yyyy hh:ii",
+            autoclose: true,
+            todayBtn: "linked",
+            pickerPosition: "bottom",
+            language: "pt-BR"
+        });
+        $(".form_datetime").datetimepicker("update", '@Html.Raw(Model.LaudoDtRealizacao.ToString("dd/MM/yyyy HH:mm"))');
+
+        $("#cb-conclusao").click(function () {
+            $(this).select();
+        });
+        $("#cb-ritmo").click(function () {
+            $(this).select();
+        });
+        $("#cb-laudador").click(function () {
+            $(this).select();
+        });
+        $("#cb-solicitante").click(function () {
+            $(this).select();
+        });
+
+        $(document).ready(function () {
+            $("#nomepaciente").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetPacientes", "Paciente")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.PacienteNome,
+                                    value: val.PacienteNome,
+                                    pacienteId: val.PacienteId,
+                                    pacienteDtNasc: val.PacienteDataNascimento
+                                }
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                },
+                select: function (event, ui) {
+                    $("#pacienteId").val(ui.item.pacienteId);
+                    var date = new Date(parseInt(ui.item.pacienteDtNasc.replace("/Date(", "").replace(")/", ""), 10));
+                    var mes = (date.getMonth() + 1);
+                    var m = mes.toString();
+                    if (mes < 10) {
+                        m = '0' + m;
+                    }
+                    var dia = date.getUTCDate();
+                    var d = dia.toString();
+                    if (dia < 10) {
+                        d = '0' + d;
+                    }
+                    $("#pacienteDtNasc").val((d) + "/" + m + "/" + date.getFullYear());
+                    $("#pacienteIdade").val(getIdade(date.getFullYear(), (date.getMonth() + 1), (date.getUTCDate())));
+                }
+            });
+
+
+            $("#cb-conclusao").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetConclusoes", "Conclusao")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.ConclusaoCodigo + ' - ' + val.ConclusaoDescricao,
+                                    value: val.ConclusaoCodigo + ' - ' + val.ConclusaoDescricao,
+                                    conclusaoId: val.ConclusaoId,
+                                    descr: val.ConclusaoDescricao
+                                }
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                },
+                select: function (event, ui) {
+                    var id = ui.item.conclusaoId;
+                    if (id > 0) {
+                        var id2 = '#' + 'row-' + id;
+                        $("#table-conclusoes").append(
+                            '<tr class="text-left" id="' + id + '"><td>' + ui.item.conclusaoId + ' - ' + ui.item.descr + '</td> ' +
+                            '<td><a onclick="SomeDeleteRowFunction(this)" id="' + id2 + '" href="javascript:void(0);">Excluir</a></td></tr>');
+                    }
+                    $("#cb-conclusao").autocomplete('close').val('');
+                }
+            });
+
+            $("#cb-ritmo").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetRitmos", "Ritmo")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.RitmoCodigo + ' - ' + val.RitmoDescricao,
+                                    value: val.RitmoCodigo + ' - ' + val.RitmoDescricao,
+                                    ritmoId: val.RitmoId,
+                                    descr: val.RitmoDescricao
+                                }
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                },
+                select: function (event, ui) {
+                    $("#ritmoId").val(ui.item.ritmoId);
+                }
+            });
+
+            $("#cb-laudador").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetMedicos", "Medico")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.MedicoNome,
+                                    value: val.MedicoNome,
+                                    medicoId: val.MedicoId,
+                                    descr: val.MedicoNome
+                                }
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                },
+                select: function (event, ui) {
+                    $("#laudadorId").val(ui.item.medicoId);
+                }
+            });
+
+            $("#cb-solicitante").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetMedicos", "Medico")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    //label: val.MedicoCRM + ' - ' + val.MedicoNome,
+                                    //value: val.MedicoCRM + ' - ' + val.MedicoNome,
+                                    label: val.MedicoNome,
+                                    value: val.MedicoNome,
+                                    medicoId: val.MedicoId,
+                                    descr: val.MedicoNome
+                                }
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                },
+                select: function (event, ui) {
+                    $("#solicitanteId").val(ui.item.medicoId);
+                }
+            });
+        });
+
+        function getIdade(ano, mes, dia) {
+            var date = new Date();
+            var a = date.getFullYear();
+            var m = (date.getMonth() + 1);
+            var d = (date.getUTCDate());
+
+            var idade = a - ano;
+
+            if (m < mes || (m = mes && d < dia)) {
+                idade = idade - 1;
+            }
+
+            return idade;
+        }
+
+        function SomeDeleteRowFunction(o) {
+            var p = o.parentNode.parentNode;
+            p.parentNode.removeChild(p);
+        }
+
+        $('#myform').submit(function (event) {
+
+            event.preventDefault(); //this will prevent the default submit
+
+            $('#table-conclusoes tr').each(function () {
+                if (this.id > 0) {
+                    $('#idsConclusoes').val($('#idsConclusoes').val() + this.id + '-');
+                }
+            });
+
+            var dt = $("#dtRealizacao").val();
+            var dia = dt.substring(0, 2);
+            var mes = dt.substring(3, 5);
+            var ano = dt.substring(6, 10);
+            var hora = dt.substring(11, 13);
+            var min = dt.substring(14, 16);
+            $('#vDtRealizacao').val(ano + '/' + mes + '/' + dia + ' ' + hora + ':' + min);
+
+            $(this).unbind('submit').submit(); // continue the submit unbind preventDefault
+        });
+
+        $("#btn_submit").on("click", function () {
+
+            var data = { PacienteNome: $("#modalNome").val(), PacienteDataNascimento: $("#modalData").val() };
+
+            var dt = $("#modalData").val();
+            if (dt.length != 10) {
+                alert('Data de nascimento inválida');
+                return false;
+            }
+
+            var dia = dt.substring(0, 2);
+            if (dia < 1 || dia > 31) {
+                alert('Dia deve ser um inteiro entre 1 e 31');
+                return false;
+            }
+
+            var mes = dt.substring(3, 5);
+            if (mes < 1 || mes > 12) {
+                alert('Mês deve ser um inteiro entre 1 e 12');
+                return false;
+            }
+
+            $.ajax({
+                url: '/Paciente/Create2?dt=' + data.PacienteDataNascimento,
+                type: 'POST',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                error: function (xhr) {
+                    console.log(xhr);
+                    alert(xhr.statusText);
+                },
+                success: function (result) {
+                    var paciente = result.data;
+                    if (result.result == "ok") {
+                        $("#pacienteId").val(paciente.PacienteId);
+                        var date = new Date(parseInt(paciente.PacienteDataNascimento.replace("/Date(", "").replace(")/", ""), 10));
+                        var mes = (date.getMonth() + 1);
+                        var m = mes.toString();
+                        if (mes < 10) {
+                            m = '0' + m;
+                        }
+                        var dia = date.getUTCDate();
+                        var d = dia.toString();
+                        if (dia < 10) {
+                            d = '0' + d;
+                        }
+                        $("#pacienteDtNasc").val((d) + "/" + m + "/" + date.getFullYear());
+                        $("#pacienteIdade").val(getIdade(date.getFullYear(), (date.getMonth() + 1), (date.getUTCDate())));
+                        $("#nomepaciente").val(paciente.PacienteNome);
+                        $('#exampleModal').modal('toggle');
+                    } else {
+                        alert(result.data);
+                    }
+
+                    //location.reload();
+                },
+                async: true,
+                processData: false
+            });
+        });
+
+        $("#btn_submit2").on("click", function () {
+
+            var data = { MedicoNome: $("#modalNomeSolicitante").val(), MedicoCRM: $("#modalCRM").val() };
+
+            $.ajax({
+                url: '/Medico/Create2',
+                type: 'POST',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                error: function (xhr) {
+                    console.log(xhr);
+                    alert(xhr.statusText);
+                },
+                success: function (result) {
+                    var medico = result.data;
+                    if (result.result == "ok") {
+                        $("#solicitanteId").val(medico.MedicoId);
+                        $("#cb-solicitante").val(medico.MedicoNome);
+                        $('#exampleModal2').modal('toggle');
+                    } else {
+                        alert(result.data);
+                    }
+
+                    //location.reload();
+                },
+                async: true,
+                processData: false
+            });
+        });
+
+        function getJSDate(dt) {
+            return new Date(parseInt(dt.replace("/Date(", "").replace(")/", ""), 10));
+        }
+    </script>
+}

@@ -1,0 +1,135 @@
+﻿
+<!-- One -->
+<section id="one" class="main special">
+    <div class="container">
+        @*<span class="image fit primary"><img src="~/Images/pic01.jpg" alt="" /></span>*@
+        <div class="content">
+            <header class="major">
+                <h2>Novo Laudo</h2>
+            </header>
+            <p>Dados paciente</p>
+            <div class="row uniform">
+                @*<div class="12u$">
+                        <ul class="actions">
+                            <li><a href="#one" class="button special scrolly">Novo Paciente</a></li>
+                        </ul>
+                    </div>*@
+                <div class="6u 12u$(xsmall)"><input type="text" name="nomepaciente" id="nomepaciente" placeholder="Nome Paciente" /></div>
+                <div class="6u$ 12u$(xsmall)"><input type="text" name="datanascimento" id="datanascimentoidade" placeholder="Data Nascimento" /></div>
+                <div class="6u 12u$(xsmall)"><input type="text" name="idade" id="idade" placeholder="Idade" /></div>
+                <div class="6u$ 12u$(xsmall)">
+                    <div class="select-wrapper">
+                        <select name="demo-category" id="demo-category">
+                            <option value="">- Convênio -</option>
+                            <option value="1">Unimed</option>
+                            <option value="1">Amil</option>
+                            <option value="1">Clinipan</option>
+                            <option value="1">Copel</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:30px">Dados do laudo</p>
+            <div class="row uniform">
+                <div class="6u 12u$(xsmall)">
+                    <div class="select-wrapper">
+                        <select name="demo-category" id="demo-category">
+                            <option value="">- Médico que laudou -</option>
+                            <option value="1">Daniele Alves</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="6u$ 12u$(xsmall)">
+                    <div class="select-wrapper">
+                        <select name="demo-category" id="demo-category">
+                            <option value="">- Médico que solicitou -</option>
+                            <option value="1">Daniele Alves</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="12u">
+                    <div class="select-wrapper">
+                        <select name="demo-category" id="demo-category">
+                            <option value="">- Ritmo -</option>
+                            <option value="1">Sinusal</option>
+                            <option value="1">Taquicardia sinusal</option>
+                            <option value="1">Bradicardia sinusal</option>
+                            <option value="1">Arritmia sinusal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="12u">
+                    <div class="select-wrapper">
+                        <select name="demo-category" id="demo-category">
+                            <option value="">- Conclusão -</option>
+                            <option value="1">Alterações de repolarização ventricular</option>
+                            <option value="1">Alteração da repolarização ventricular em parede anterior</option>
+                            <option value="1">Alteração da repolarização ventricular em parede inferior</option>
+                            <option value="1">Alteração da repolarização ventricular em parede lateral</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="12u">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Conclusão</th>
+                                    <th>Excluir</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Alterações de repolarização ventricular</td>
+                                    <td>@Html.ActionLink("Excluir", "Index")</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="12u$">
+                    <textarea name="demo-message" id="demo-message" placeholder="Complemento" rows="6"></textarea>
+                </div>
+                <div class="12u$">
+                    <ul class="actions">
+                        <li><a href="#one" class="button special scrolly">Cadastrar</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        @*<a href="#two" class="goto-next scrolly">Next</a>*@
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#nomepaciente").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetPacientes", "Laudo")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.PacienteNome,
+                                    value: val.PacienteNome,
+                                    customerId: val.PacienteId
+                                }
+                            }))
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    $("#CustomerID").val(ui.item.customerId);
+                }
+            });
+        });
+    </script>
+}

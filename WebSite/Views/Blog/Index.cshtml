@@ -1,0 +1,163 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<AppServices.Dtos.BlogPostDto>
+
+
+<!-- Page Banner -->
+<div class="page-banner blog-banner container-fluid no-padding">
+    <!-- Container -->
+    <div class="container">
+        <h3>Blog</h3>
+        <p>Acompanhe notícias, novidades da área médica, dicas, entre outros</p>
+        <p>conteúdos selecionados exclusivamente para você.</p>
+        @*<ol class="breadcrumb">
+                <li><a href="#">home</a></li>
+                <li class="active">Blog</li>
+            </ol>*@
+    </div><!-- Container /- -->
+    <!-- Shape -->
+    <div class="banner-shape container-fluid no-padding">
+        <div class="col-md-6 col-sm-6 col-xs-6 shape-left no-padding">
+            <div class="left-shape-blue">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon2" clipPathUnits="objectBoundingBox">
+                        <polygon points="0 0, 0 100, 120 100, 0 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+            <div class="left-shape">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon1" clipPathUnits="objectBoundingBox">
+                        <polygon points="0 0, 0 100, 100 100, 0 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 shape-right no-padding">
+            <div class="right-shape-blue">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon3" clipPathUnits="objectBoundingBox">
+                        <polygon points="1 0.2, 0 1, 0 0.835, 1 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+            <div class="right-shape">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon4" clipPathUnits="objectBoundingBox">
+                        <polygon points="1 0, 0 1, 100 100, 100 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+        </div>
+    </div><!-- Shape -->
+</div><!-- Page Banner /- -->
+<!-- Page Content -->
+                
+@if (Model.Count == 0)
+{
+    <h3 style="width: 100%; text-align: center;">Não existem posts publicados...</h3>
+}
+<div class="container-fluid no-padding page-content">
+    <!-- Container -->
+    <div class="container">
+        <!-- Row -->
+        <div class="row">
+            <!-- Blog Area -->
+            <div class="col-md-9 col-sm-8 col-xs-12 blog-area ">
+
+                @foreach (var item in Model)
+                {
+                    <article class="blog-post-list col-md-12 col-sm-12 col-xs-12">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="row text-right" style="margin-right: 6px;">
+                                @Html.ActionLink("Editar post", "Edit", "Blog", new {@id = item.BpoId}, null) |
+                                @Html.ActionLink("Deletar post", "Delete", "Blog", new {@id = item.BpoId}, null)
+                            </div>
+                        }
+                        <div class="entry-header">
+                            <div class="entry-cover">
+                                @{
+                                    var path = "/UploadedImage/" + item.BpoImagePath;
+                                }
+                                <a href="@Url.Action("Details", "Blog", new {id = item.BpoId})">
+                                    <img src="@path" alt="blog-1"/>
+                                </a>
+                                <a href="@Url.Action("Details", "Blog", new {id = item.BpoId})" class="read-more"><i class="fa fa-link"></i>Leia mais</a>
+                            </div>
+                        </div>
+                        <div class="entry-content">
+                            @*<div class="entry-meta">
+                                <a href="#"><i class="fa fa-comment-o"></i>Comentários<span>(12)</span></a>
+                                <a href="#"><i class="fa fa-heart-o"></i>Favoritos<span>(11)</span></a>
+                                <a href="#"><i class="fa fa-share-alt"></i>Compartilhar<span>(12)</span></a>
+                            </div>*@
+                            <h3 class="entry-title">
+                                <a href="blog-post.html">@item.BpoTitulo</a>
+                            </h3>
+                            <div class="post-meta">
+                                <a href="#" title="25th sep 2015" class="post-date">@item.BpoData.ToString("dd/MM/yyyy HH:mm:ss")</a> por
+                                <a href="#" title="Mathov" class="post-admin">@item.BpoAutor</a>
+                            </div>
+                            @{
+                                var max = 224;
+                                if (item.BpoTexto.Length < 224)
+                                {
+                                    max = item.BpoTexto.Length;
+                                }
+                            }
+                            <p>@item.BpoTexto.Substring(0, max) [...]</p>
+                        </div>
+                    </article>
+                }
+
+                @Html.PagedListPager(Model, pageNumber => Url.Action("Index",
+                    new
+                    {
+                        pageNumber,
+                        filtro = Request.QueryString["filtro"]
+                    }))
+            </div><!-- Blog Area /- -->
+            <!-- Widget Area -->
+            <div class="col-md-3 col-sm-4 col-xs-12 widget-area no-left-padding">
+    
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div style="width: 100%; text-align: center; margin-bottom: 20px;">
+                        @Html.ActionLink("Novo Post", "Create", "Blog", new {@class = "btn btn-primary"})
+                    </div>
+                }
+
+                <!-- Widget Search -->
+                <aside class="widget widget-search">
+                    <h3 class="widget-title">Pesquisar</h3>
+                    <div class="input-group">
+                        <input id="filtro" type="text" class="form-control" placeholder="Digite aqui" value="@TempData["filtro"]">
+                        <span class="input-group-btn">
+                            <a href="@Url.Action("Index", "Blog")" class="btn btn-default" type="button" onclick="addParams(this)"><i class="fa fa-search"></i></a>
+                        </span>
+                    </div>
+                </aside><!-- Widget Search /- -->
+            </div>
+        </div><!-- Row /- -->
+    </div><!-- Container /- -->
+</div><!-- Page Content /- -->
+
+@section Scripts
+{
+    <script>
+        corrigeClasseActive("#menu-blog");
+
+        function addParams(obj) {
+            obj.href += '?filtro=' + $("#filtro").val();
+        }
+
+        var success = '@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["success"])??"")';
+        if (success) {
+            alert(success);
+        }
+        var error = '@Html.Raw(HttpUtility.JavaScriptStringEncode((string)TempData["error"])??"")';
+        if (error) {
+            alert(error);
+        }
+    </script>
+}

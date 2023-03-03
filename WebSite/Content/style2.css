@@ -1,0 +1,26 @@
+﻿
+@media (max-width:768px) {
+    .info-clinica {
+        display: none;
+    }
+
+    .texto-quem-somos {
+        width: 90%;
+    }
+}
+
+
+@media (min-width:1200px) {
+    .tamanho-banner {
+        padding: 120px;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        float: none;
+        margin: 0 auto;
+        display: table;
+        table-layout: fixed;
+    }
+}

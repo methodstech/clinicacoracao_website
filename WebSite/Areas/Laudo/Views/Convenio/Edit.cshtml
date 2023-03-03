@@ -1,0 +1,33 @@
+﻿<link rel="stylesheet" href="~/Content/main.css" />
+
+@model AppServices.Dtos.ConvenioDto
+
+@{
+    ViewBag.Title = "Novo";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ConvenioId)
+    <section id="create_convenio" class="main special">
+        <div class="container">
+            <div class="content">
+                <header class="major">
+                    <h2>Alterar Convênio</h2>
+                </header>
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.ConvenioNome, new { htmlAttributes = new { @placeholder = "Nome", @required = "required", @type = "text" } })
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li>@Html.ActionLink("Cancelar", "Index", "Convenio", null, new { @class = "button special scrolly" })</li>
+                            <li><input type="submit" value="Alterar" class="button special scrolly" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

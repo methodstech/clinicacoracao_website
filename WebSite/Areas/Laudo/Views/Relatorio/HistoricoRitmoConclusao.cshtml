@@ -1,0 +1,218 @@
+﻿@model AppServices.Dtos.RelatorioRitmoConclusaoDto
+
+@{
+    ViewBag.Title = "Relatório por ritmo e conclusão";
+}
+
+<link rel="stylesheet" href="~/Content/jquery-ui.min.css" />
+
+<section class="main">
+    <div class="container">
+        <div class="content">
+            <header class="major">
+                <h2>Histórico por ritmo e conclusão</h2>
+            </header>
+            <section>
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">Filtro</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row uniform">
+                                    <div class="6u 12u$(xsmall)">
+                                        <input type="text" name="cb-ritmo" id="cb-ritmo" placeholder="Ritmo" />
+                                        <input type="text" name="ritmoId" id="ritmoId" style="display: none; visibility: collapse;" />
+                                    </div>
+                                    <div class="6u$ 12u$(xsmall)">
+                                        <input type="text" name="cb-conclusao" id="cb-conclusao" placeholder="Conclusão" />
+                                        <input type="text" name="conclusaoId" id="conclusaoId" style="display: none; visibility: collapse;" />
+                                    </div>
+                                </div>
+                                <div class="row uniform">
+                                    <div class="6u 12u$(xsmall)">
+                                        <input type="text" class="datepicker" name="dtInicial" id="dtInicial" placeholder="Data inicial" maxlength="10" onkeypress="mascaraData(this)" />
+                                    </div>
+                                    <div class="6u$ 12u$(xsmall)">
+                                        <input type="text" class="datepicker" name="dtFinal" id="dtFinal" placeholder="Data final" maxlength="10" onkeypress="mascaraData(this)" />
+                                    </div>
+                                </div>
+                                <div class="row uniform">
+                                    <div class="12u$">
+                                        <ul class="actions">
+                                            <li>@Html.ActionLink("Filtrar", "HistoricoRitmoConclusao", "Relatorio", null, new { onclick = "addParams(this)", @class = "button special scrolly" })</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row uniform" id="div-grafico">
+                        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+                    </div>
+                </div>
+                <div>
+                    @*<p class=" text-left small" style="margin: 0">Total de laudos: @Model.ToList().Count</p>*@
+                    <div style="background-color:#cf3c40; height:1px; width:auto; margin: 20px 0 20px 0"></div>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                @*<th>Data cadastro</th>*@
+                                <th>Paciente</th>
+                                <th>Convênio</th>
+                                <th>Laudador</th>
+                                <th>Solicitante</th>
+                                <th>Detalhes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Laudos)
+                            {
+                                <tr>
+                                    @*<td>@item.DtCadastro.ToString("dd/MM/yyyy HH:mm:ss")</td>*@
+                                    <td>@item.Paciente</td>
+                                    <td>@item.Convenio</td>
+                                    <td>@item.Laudador</td>
+                                    <td>@item.Solicitante</td>
+                                    <td>@Html.ActionLink("Detalhes", "Details", "Laudo", new { id = @item.LaudoId }, null)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $("#dtInicial").on("click", function () {
+            $(this).select();
+        });
+        $("#dtFinal").on("click", function () {
+            $(this).select();
+        });
+        $("#cb-ritmo").on("click", function () {
+            $(this).select();
+        });
+        $("#cb-conclusao").on("click", function () {
+            $(this).select();
+        });
+
+        $("#cb-ritmo").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetRitmos", "Ritmo")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.RitmoCodigo + ' - ' + val.RitmoDescricao,
+                                    value: val.RitmoCodigo + ' - ' + val.RitmoDescricao,
+                                    ritmoId: val.RitmoId,
+                                    descr: val.RitmoDescricao
+                                }
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                },
+                select: function (event, ui) {
+                    $("#ritmoId").val(ui.item.ritmoId);
+                    console.log('setou o ritmoId: ' + $("#ritmoId").val());
+                }
+        });
+
+        $("#cb-conclusao").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetConclusoes", "Conclusao")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.ConclusaoCodigo + ' - ' + val.ConclusaoDescricao,
+                                    value: val.ConclusaoCodigo + ' - ' + val.ConclusaoDescricao,
+                                    conclusaoId: val.ConclusaoId,
+                                    descr: val.ConclusaoDescricao
+                                }
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                },
+                select: function (event, ui) {
+                    $("#conclusaoId").val(ui.item.conclusaoId);
+                    console.log('setou o conclusaoId: ' + $("#conclusaoId").val());
+                }
+        });
+
+        function addParams(obj) {
+            obj.href += '?ritmoId=' + $("#ritmoId").val();
+            obj.href += '&conclusaoId=' + $("#conclusaoId").val();
+            obj.href += '&dtInicial=' + $("#dtInicial").val();
+            obj.href += '&dtFinal=' + $("#dtFinal").val();
+        }
+
+        $(document).ready(function () {
+            $('#cb-ritmo').val('@Html.Raw(ViewBag.Ritmo)');
+            $('#ritmoId').val('@Html.Raw(ViewBag.RitmoId)');
+            $('#cb-conclusao').val('@Html.Raw(ViewBag.Conclusao)');
+            $('#conclusaoId').val('@Html.Raw(ViewBag.ConclusaoId)');
+            $('#dtInicial').val('@Html.Raw(ViewBag.DtInicial)');
+            $('#dtFinal').val('@Html.Raw(ViewBag.DtFinal)');
+        });
+
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        var qtdeLaudos = '@Html.Raw(Model.Laudos.ToList().Count)';
+
+        if (qtdeLaudos == 0) {
+            $("#div-grafico").hide();
+        } else {
+            $("#div-grafico").show();
+            var total = '@Html.Raw(Model.QuantidadeTotal)' - filtrado;
+            var filtrado = '@Html.Raw(Model.QuantidadeFiltrada)';
+            var titulo = '@Html.Raw(ViewBag.Titulo)';
+
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Laudos', 'Quantidade'],
+                    ['Outros', total],
+                    [titulo, filtrado]
+                ]);
+
+                var options = {
+                    title: '',
+                    is3D: true,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                chart.draw(data, options);
+            }
+        }
+    </script>
+}

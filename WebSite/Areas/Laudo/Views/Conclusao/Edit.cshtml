@@ -1,0 +1,38 @@
+﻿<link rel="stylesheet" href="~/Content/main.css" />
+
+@model AppServices.Dtos.ConclusaoDto
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ConclusaoId)
+    <section id="create_conclusao" class="main special">
+        <div class="container">
+            <div class="content">
+                <header class="major">
+                    <h2>Alterar Conclusão</h2>
+                </header>
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.ConclusaoCodigo, new { htmlAttributes = new { @placeholder = "Código", @required = "required", @type = "text" } })
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        @Html.EditorFor(model => model.ConclusaoDescricao, new { htmlAttributes = new { @placeholder = "Descrição", @required = "required", @type = "text" } })
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li>@Html.ActionLink("Cancelar", "Index", "Conclusao", null, new { @class = "button special scrolly" })</li>
+                            <li><input type="submit" value="Alterar" class="button special scrolly" /></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}

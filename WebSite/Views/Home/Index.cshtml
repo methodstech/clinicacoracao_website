@@ -1,0 +1,277 @@
+﻿<!-- Banner Section -->
+<div id="home-banner" class="container-fluid no-padding banner-section home-banner" style="padding: 20px 0 20px 0;">
+    <!-- Container -->
+    <div class="container">
+        <div id="main-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="col-md-12 col-sm-12 no-padding">
+                        <div class="banner-left tamanho-banner" style="height: 75vh; ">
+                            <span> O melhor serviço para você sempre!</span>
+                            <h3>agende sua consulta</h3>
+                            <p>Qualidade de Serviço e Conforto dos Nossos Pacientes é o que nos Motiva! Faça Seu Agendamento On-line!</p><br />
+                            <a target="_blank" rel=noopener href="http://clinicadocoracao.stenci.com.br/patient/login">Agende agora<i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                    @*<div class="col-md-6 col-sm-6 no-padding">
+                        <div class="banner-right">
+                            <img src="~/Images/bmed.png" alt="banner-main" />
+                        </div>
+                    </div>*@
+                </div>
+                <div class="item">
+                    <div class="col-md-12 col-sm-12 no-padding">
+                        <div class="banner-left tamanho-banner" style="height: 75vh;">
+                            <span>O melhor para você!</span>
+                            <h3>nós nos preocupamos com sua saúde</h3>
+                            <p> Equipe Qualificada Com Expertise nos Serviços Por Nós Oferecidos. Conheça Mais O Que Oferecemos.</p><br />
+                            <a href="../Home/Services">Veja mais<i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                    @*<div class="col-md-6 col-sm-6 no-padding">
+                        <div class="banner-right">
+                            <img src="~/Images/banner-main.png" alt="banner-main" />
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div><!-- Container /- -->
+    <!-- Shape -->
+    <div class="banner-shape container-fluid no-padding">
+        <div class="col-md-6 col-sm-6 col-xs-6 shape-left no-padding">
+            <div class="left-shape-blue">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon2" clipPathUnits="objectBoundingBox">
+                        <polygon points="0 0, 0 100, 120 100, 0 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+            <div class="left-shape">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon1" clipPathUnits="objectBoundingBox">
+                        <polygon points="0 0, 0 100, 100 100, 0 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 shape-right no-padding">
+            <div class="right-shape-blue">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon3" clipPathUnits="objectBoundingBox">
+                        <polygon points="1 0.2, 0 1, 0 0.835, 1 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+            <div class="right-shape">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon4" clipPathUnits="objectBoundingBox">
+                        <polygon points="1 0, 0 1, 100 100, 100 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+        </div>
+    </div><!-- Shape /- -->
+</div><!-- Banner Section /- -->
+
+<!-- Message Borad -->
+<div id="message-borad" class="container-fluid no-padding message-borad">
+    <!-- Container -->
+    <div class="container">
+        <div class="row">
+            <!-- Emargency Case -->
+            <div class="col-md-6 col-sm-6 opening-hours">
+                <div class="col-md-6 message-block no-left-padding">
+                    <h3>Nossa equipe</h3>
+                    <p>A responsabilidade pelo serviço prestado é de todos os colaboradores que nela desempenham suas atividades.</p>
+                    <a href="../Team/Index">Mais Detalhes<i class="fa fa-caret-right"></i></a>
+                </div>
+                <div class="col-md-6 message-block no-right-padding">
+                    <h3>Área Administrativa</h3>
+                    <p>Acesso respectivo aos profissionais da Clínica do Coração.</p>
+                    @*<a href="#">Acessar Área<i class="fa fa-caret-right"></i></a>*@
+                    <a href="@Url.Action("Index", "Home", new { Area = "Laudo" })">
+                        Acessar Área<i class="fa fa-caret-right"></i>
+                    </a>
+                </div>
+            </div><!-- Emargency Case /- -->
+            <!-- Opening Hours -->
+            <div class="col-md-6 col-sm-6 opening-hours">
+                <div class="col-md-6 message-block no-padding">
+                    <h3>Horário atendimento</h3>
+                    <ul>
+                        <li>Segunda - Sexta<span class="pull-right">7.30 – 20.00</span></li>
+                        <li>Sábado<span class="pull-right">8.00 – 13.00</span></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 message-block">
+                    <h3>Agendamento on-line</h3>
+                    <p>Você pode agendar sua consulta de um jeito rápido e prático. Acesse sua área interna.</p>
+                    <a target="_blank" rel=noopener href="http://clinicadocoracao.stenci.com.br/patient/login">Acessar Área<i class="fa fa-caret-right"></i></a>
+                </div>
+            </div><!-- Opening Hours /- -->
+        </div>
+    </div><!-- Container /- -->
+</div><!-- Message Borad /- -->
+
+<!-- Service Section -->
+<div id="service-section" class="container-fluid no-padding service-section">
+    <!-- Container -->
+    <div class="container">
+        <!-- Row -->
+        <div class="row">
+            <!-- Service -->
+            <div class="col-md-12 col-sm-12 col-xs-12 service">
+                <div class="section-header">
+                    <h3>Bem-vindos a Clínica do Coração</h3>
+                    <p>Um centro de saúde de alta tecnologia disponível para você!</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="service-block">
+                            <div class="service-block-icon">
+                                <i><img src="~/Images/diagnostic-black.png" alt="ambulance" /></i>
+                                <i><img src="~/Images/diagnostic-white.png" alt="ambulance-white" /></i>
+                            </div>
+                            <div class="service-block-content">
+                                <h3>consultas e exames</h3>
+                                <p>Oferecemos diversas especialidades deixando os nossos pacientes assistidos sempre que precisarem.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="service-block">
+                            <div class="service-block-icon">
+                                <i><img src="~/Images/doctor.png" alt="heart-ic" /></i>
+                                <i><img src="~/Images/doctor-white.png" alt="heart-ic-white" /></i>
+                            </div>
+                            <div class="service-block-content">
+                                <h3>equipe qualificada</h3>
+                                <p>Contamos com médicos altamente capacitados, com vasta experiência e em constante atualização para melhor atendê-lo. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="service-block">
+                            <div class="service-block-icon">
+                                <i><img src="~/Images/icon-22.png" alt="phone" /></i>
+                                <i><img src="~/Images/icon-2.png" alt="phone-white" /></i>
+                            </div>
+                            <div class="service-block-content">
+                                <h3>convênios que atendemos</h3>
+                                <p>Unimed, Fundação Copel, Fundação Itaú, Fundação Sanepar, Bradesco, SulAmérica, ASSEFAZ, Petrobras, Saúde Caixa e outros.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="service-block">
+                            <div class="service-block-icon">
+                                <i><img src="~/Images/appoinment-latter.png" alt="appoinment-latter" /></i>
+                                <i><img src="~/Images/appoinment-latter-white.png" alt="appoinment-latter-white" /></i>
+                            </div>
+                            <div class="service-block-content">
+                                <h3>agendamento on-line</h3>
+                                <p>Facilidade no processo de agendamento de consultas e exames, garantindo agilidade e comodidade a todos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Service /- -->
+
+        </div>
+    </div><!-- Container /- -->
+</div><!-- Service Section /- -->
+
+<!-- Call Out -->
+<div id="call-out" class="container-fluid no-padding call-out">
+    <!-- Container -->
+    <div class="container">
+        <div class="call-out-content row">
+            <div class="col-md-10 col-sm-9 col-xs-12">
+                <h3>Agende sua consulta <span>de forma on-line!</span></h3>
+                <p>Por meio de plataforma on-line você consegue realizar seu agendamento tanto quanto acompanhar a confirmação do mesmo.</p>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-12">
+                <a target="_blank" rel=noopener href="http://clinicadocoracao.stenci.com.br/patient/login" title="Agende agora">Agende agora</a>
+            </div>
+        </div>
+    </div><!-- Container /- -->
+</div><!-- Call Out /- -->
+
+<!-- Departments Section -->
+@Html.Partial("~/Views/Shared/_Department.cshtml")<!-- Departments Section /- -->
+
+<!-- Counter Section -->
+@Html.Partial("~/Views/Shared/_Counter.cshtml")<!-- Counter Section /- -->
+
+<!-- Latest News -->
+<div class="container-fluid no-padding latest-news">
+    <!-- Container -->
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+            <h3>Dicas Recentes & Notícias</h3>
+            @Html.ActionLink("Veja Mais Posts", "Index", "Blog") 
+            @*<a href="blog.html">Veja Mais Posts<i class="fa fa-plus"></i></a>*@
+        </div><!-- Section Header /- -->
+        <div class="row">
+            <article class="col-md-6 col-sm-12 col-xs-12">
+                <div class="entry-header">
+                    <div class="entry-cover">
+                        <a href="blog-post.html"><img src="~/Images/noticia_1.jpg" alt="latest-news" /></a>
+                        @*<a href="blog-post.html" class="read-more"><i class="fa fa-link"></i>Leia mais</a>*@
+                    </div>
+                </div>
+                <div class="entry-content">
+                    <div class="entry-meta">
+                        @*<a href="#"><i class="fa fa-comment-o"></i>Comentários<span>(12)</span></a>
+                        <a href="#"><i class="fa fa-heart-o"></i>Favoritos<span>(11)</span></a>
+                        <a href="#"><i class="fa fa-share-alt"></i>Compartilhar<span>(12)</span></a>*@
+                    </div>
+                    <h3 class="entry-title"><a href="blog-post.html">Você sabia? É possível prevenir um derrame ao fazer um Doppler.</a></h3>
+                    <div class="post-meta">
+                        <a href="#" title="25th sep 2015" class="post-date">09 de agosto de 2018</a> por
+                        <a href="#" title="Mathov" class="post-admin">Dr. Diego de Almeida</a> em Clinica do Coração São Lucas
+                    </div>
+                    <p>Neste exame, o médico pode ver o estreitamento das artérias e medir a velocidade com que o sangue passa em seu interior. 
+                    Quanto mais alta a velocidade, maior o grau de estreitamento. O exame é indicado após uma análise clínica. Converse com seu 
+                    angiologista ou cirurgião vascular. [...] </p>
+                </div>
+            </article>
+            <article class="col-md-6 col-sm-12 col-xs-12">
+                <div class="entry-header">
+                    <div class="entry-cover">
+                        <a href="blog-post.html"><img src="~/Images/noticia_2.jpg" alt="latest-news" /></a>
+                       @* <a href="blog-post.html" class="read-more"><i class="fa fa-link"></i>Leia mais</a>*@
+                    </div>
+                </div>
+                <div class="entry-content">
+                    <div class="entry-meta">
+                        @*<a href="#"><i class="fa fa-comment-o"></i>Comentários<span>(12)</span></a>
+                        <a href="#"><i class="fa fa-heart-o"></i>Favoritos<span>(11)</span></a>
+                        <a href="#"><i class="fa fa-share-alt"></i>Compartilhar<span>(12)</span></a>*@
+                    </div>
+                    <h3 class="entry-title"><a href="blog-post.html">Qual o tratamento para a doença da artéria carótida?</a></h3>
+                    <div class="post-meta">
+                        <a href="#" title="30th sep 2015" class="post-date">11 de agosto de 2018</a> por
+                        <a href="#" title="Mathov" class="post-admin">Dr. Diego de Almeida</a> em Clinica do Coração São Lucas
+                    </div>
+                    <p>A doença é caracterizada pela obstrução da artéria, localizada no pescoço. Dependendo do grau da obstrução,
+                    poderão ser indicados medicações antiagregantes plaquetárias, que dificultam a formação de coágulo (trombo); cirurgia
+                    convencional para retirada da placa que está prejudicando a circulação; ou a angioplastia com colocação de um stent para
+                    retomada do fluxo. [...] </p>
+                </div>
+            </article>
+        </div>
+    </div><!-- Container /- -->
+</div><!-- Latest News /- -->
+
+<!-- Testimonial Section -->
+@Html.Partial("~/Views/Shared/_Testimonial.cshtml")<!-- Testimonial Section /- -->
+
+@section Scripts
+{
+    <script>
+        corrigeClasseActive("#menu-home");
+    </script>
+}

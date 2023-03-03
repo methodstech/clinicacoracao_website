@@ -1,0 +1,127 @@
+﻿@model AppServices.Dtos.BlogPostDto
+
+<!-- Page Banner -->
+<div class="page-banner blog-post-banner container-fluid no-padding">
+    <!-- Container -->
+    <div class="container">
+        <h3>@Model.BpoTitulo</h3>
+        @{
+            var max = 224;
+            if (Model.BpoTexto.Length < 224)
+            {
+                max = Model.BpoTexto.Length;
+            }
+        }
+        <p style="width: 80%; margin: auto">@Model.BpoTexto.Substring(0, max)...</p>
+    </div><!-- Container /- -->
+    <!-- Shape -->
+    <div class="banner-shape container-fluid no-padding">
+        <div class="col-md-6 col-sm-6 col-xs-6 shape-left no-padding">
+            <div class="left-shape-blue">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon2" clipPathUnits="objectBoundingBox">
+                        <polygon points="0 0, 0 100, 120 100, 0 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+            <div class="left-shape">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon1" clipPathUnits="objectBoundingBox">
+                        <polygon points="0 0, 0 100, 100 100, 0 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 shape-right no-padding">
+            <div class="right-shape-blue">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon3" clipPathUnits="objectBoundingBox">
+                        <polygon points="1 0.2, 0 1, 0 0.835, 1 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+            <div class="right-shape">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon4" clipPathUnits="objectBoundingBox">
+                        <polygon points="1 0, 0 1, 100 100, 100 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+        </div>
+    </div><!-- Shape -->
+</div><!-- Page Banner /- -->
+<!-- Page Content -->
+<div class="container-fluid no-padding page-content">
+    <!-- Container -->
+    <div class="container">
+        <!-- Row -->
+        <div class="row">
+            <!-- Blog Area -->
+            <div class="col-md-12 col-sm-12 col-xs-12 blog-area">
+                <article class="blog-post-list single-post col-md-12 col-sm-12 col-xs-12">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="row text-right" style="margin-right: 6px;">
+                            @Html.ActionLink("Editar post", "Edit", "Blog", new { @id = Model.BpoId }, null) | 
+                            @Html.ActionLink("Deletar post", "Delete", "Blog", new { @id = Model.BpoId }, null)
+                        </div>
+                    }
+                    <div class="entry-header">
+                        @{
+                            var path = "/UploadedImage/" + Model.BpoImagePath;
+                        }
+                        <div class="entry-cover">
+                            <img src="@path" alt="blog-1"/>
+                        </div>
+                    </div>
+                    <div class="entry-content">
+                        @*<div class="entry-meta">
+                            <a href="#"><i class="fa fa-share-alt"></i>Compartilhar<span>(12)</span></a>
+                        </div>*@
+                        <h3 class="entry-title">@Model.BpoTitulo</h3>
+                        <div class="post-meta">
+                            <a href="#" title="25th sep 2015" class="post-date">@Model.BpoData.ToString("dd/MM/yyyy HH:mm:ss")</a> por
+                            <a href="#" title="" class="post-admin">@Model.BpoAutor</a>
+                        </div>
+                        <p>@Html.Raw(Model.BpoTexto.Replace(Environment.NewLine, "<br/>"))</p>
+                    </div>
+                </article>
+                <!-- About Author -->
+                @*<div class="col-md-12">
+                    <div class="about-author">
+                        <div class="author-img">
+                            <a title="Evans Corner" href="#">
+                                <img src="~/Images/author.jpg" alt="author">
+                            </a>
+                        </div>
+                        <div class="author-content">
+                            <a href="#">Evans Corner</a>
+                            <p>On your mark get set and go now. Got a dream and we just know now we're gonna make our dream come true. Doin' it our way. Nothin's gonna turn us back now. Straight ahead and on the track now. We're gonna make our dreams come true. </p>
+                            <span class="author-socials">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>*@<!-- About Author /- -->
+            </div><!-- Blog Area /- -->
+        </div><!-- Row /- -->
+    </div><!-- Container /- -->
+</div><!-- Page Content /- -->
+
+@section Scripts
+{
+    <script>
+        corrigeClasseActive("#menu-blog");
+    </script>
+}

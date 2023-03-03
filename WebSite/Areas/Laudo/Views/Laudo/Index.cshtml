@@ -1,0 +1,185 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<AppServices.Dtos.LaudoDto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="~/Content/jquery-ui.min.css" />
+
+<section class="main">
+    <div class="container">
+        <div class="content">
+            <header class="major">
+                <h2>Laudos</h2>
+            </header>
+            <section>
+                <div class="row uniform">
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li>@Html.ActionLink("Novo", "Create", null, new { @class = "button special scrolly" })</li>
+
+                            <li style="float: right">
+                                <a class="button special scrolly" href="/api/LaudoExcel" onclick="addParams(this)" >Exportar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <br />
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">Filtro</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row uniform">
+                                    <div class="6u 12u$(xsmall)">
+                                        <input type="text" class="datepicker" name="dtInicial" id="dtInicial" placeholder="Data inicial" maxlength="10" onkeypress="mascaraData(this)" />
+                                    </div>
+                                    <div class="6u$ 12u$(xsmall)">
+                                        <input type="text" class="datepicker" name="dtFinal" id="dtFinal" placeholder="Data final" maxlength="10" onkeypress="mascaraData(this)" />
+                                    </div>
+                                </div>
+                                <div class="row uniform">
+                                    <div class="6u 12u$(xsmall)">
+                                        <input type="text" name="nomepaciente" id="nomepaciente" placeholder="Nome Paciente" />
+                                        <input type="text" name="pacienteId" id="pacienteId" style="display: none; visibility: collapse;" />
+                                    </div>
+                                    <div class="6u$ 12u$(xsmall)">
+                                        <input type="text" name="datanascimento" id="pacienteDtNasc" readonly placeholder="Data Nascimento" />
+                                    </div>
+                                </div>
+                                <div class="row uniform">
+                                    <div class="12u$">
+                                        <ul class="actions">
+                                            <li>@Html.ActionLink("Filtrar", "Index", "Laudo", null, new { onclick = "addParams(this)", @class = "button special scrolly" })</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Dt Cadastro</th>
+                            <th>Dt Realização</th>
+                            <th>Paciente</th>
+                            <th>Convênio</th>
+                            <th>Laudador</th>
+                            <th>Solicitante</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.LaudoDtCadastro)</td>
+                                <td>@Html.DisplayFor(modelItem => item.LaudoDtRealizacao)</td>
+                                <td>@Html.DisplayFor(modelItem => item.LaudoPaciente.PacienteNome)</td>
+                                <td>@Html.DisplayFor(modelItem => item.LaudoConvenio.ConvenioNome)</td>
+                                <td>@Html.DisplayFor(modelItem => item.LaudoMedicoLaudador.MedicoNome)</td>
+                                <td>@Html.DisplayFor(modelItem => item.LaudoMedicoSolicitante.MedicoNome)</td>
+                                <td style="width: 112px;">
+                                    <a href="@Url.Action("Print", "Laudo", new { id = item.LaudoId })" target="_blank" title="Imprimir">
+                                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                                    </a>
+                                    <a href="@Url.Action("Edit", "Laudo", new { id = item.LaudoId })" style="margin-left: 5px;" title="Editar">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    </a>
+                                    <a href="@Url.Action("Delete", "Laudo", new { id = item.LaudoId })" style="margin-left: 5px;" title="Deletar">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber,
+                    pacienteId = Request.QueryString["pacienteId"],
+                    dtInicial = Request.QueryString["dtInicial"],
+                    dtFinal = Request.QueryString["dtFinal"] }))
+            </section>
+        </div>
+    </div>
+</section>
+
+
+<a href="#" target="_blank" title="Imprimir" id="btn_imprimir">
+    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+</a>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#pacienteId").val('@Html.Raw(ViewBag.PacienteId)');
+            $("#nomepaciente").val('@Html.Raw(ViewBag.PacienteNome)');
+            $("#pacienteDtNasc").val('@Html.Raw(ViewBag.PacienteDtNascimento)');
+            $("#dtInicial").val('@Html.Raw(ViewBag.DtInicial)');
+            $("#dtFinal").val('@Html.Raw(ViewBag.DtFinal)');
+
+            $("#nomepaciente").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("GetPacientes", "Paciente")',
+                        datatype: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            response($.map(data, function (val, item) {
+                                return {
+                                    label: val.PacienteNome,
+                                    value: val.PacienteNome,
+                                    pacienteId: val.PacienteId,
+                                    pacienteDtNasc: val.PacienteDataNascimento
+                                }
+                            }))
+                        }
+                    })
+                },
+                messages: {
+                    noResults: '',
+                    results: function () { }
+                },
+                select: function (event, ui) {
+                    $("#pacienteId").val(ui.item.pacienteId);
+                    var date = new Date(parseInt(ui.item.pacienteDtNasc.replace("/Date(", "").replace(")/", ""), 10));
+                    var mes = (date.getMonth() + 1);
+                    var m = mes.toString();
+                    if (mes < 10) {
+                        m = '0' + m;
+                    }
+                    $("#pacienteDtNasc").val((date.getUTCDate()) + "/" + m + "/" + date.getFullYear());
+                }
+            });
+        });
+
+        function addParams(obj) {
+            obj.href += '?pacienteId=' + $("#pacienteId").val();
+            obj.href += '&dtInicial=' + $("#dtInicial").val();
+            obj.href += '&dtFinal=' + $("#dtFinal").val();
+        }
+
+        $(function () {
+            $('#btnExportar').click(function (e) {
+                var url = window.location.host + '/api/LaudoExcel?'
+                    + 'pacienteId=' + $("#pacienteId").val()
+                    + '&dtInicial=' + $("#dtInicial").val()
+                    + '&dtFinal=' + $("#dtFinal").val();
+
+                //e.preventDefault();
+                window.open(url, '_blank');
+            });
+        });
+    </script>
+}

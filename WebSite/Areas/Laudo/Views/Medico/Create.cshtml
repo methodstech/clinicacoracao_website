@@ -1,0 +1,37 @@
+﻿<link rel="stylesheet" href="~/Content/main.css" />
+
+@model AppServices.Dtos.MedicoDto
+
+@{
+    ViewBag.Title = "Novo";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section id="create_medico" class="main special">
+        <div class="container">
+            <div class="content">
+                <header class="major">
+                    <h2>Novo Médico</h2>
+                </header>
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.MedicoNome, new { htmlAttributes = new { @placeholder = "Nome", @required = "required" } })
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        @Html.EditorFor(model => model.MedicoCRM, new { htmlAttributes = new { @placeholder = "CRM", @required = "required" } })
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li>@Html.ActionLink("Cancelar", "Index", "Medico", null, new { @class = "button special scrolly" })</li>
+                            <li><input type="submit" value="Cadastrar" class="button special scrolly" /></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}

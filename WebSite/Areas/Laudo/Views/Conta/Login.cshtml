@@ -1,0 +1,49 @@
+﻿@model AppServices.Dtos.UsuarioDto
+
+@{
+    Layout = null;
+}
+
+@if (TempData["success"] != null)
+{
+    <script>
+            alert('@Html.Raw(TempData["success"].ToString())');
+    </script>
+}
+@if (TempData["error"] != null)
+{
+    <script>
+            alert('ERRO: ' + '@Html.Raw(TempData["error"].ToString())');
+    </script>
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.css" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section id="login" class="main special">
+        <div class="container">
+            <div class="content">
+                <header class="major" style="padding-bottom: 8em;">
+                    <img style="width:280px; " src="~/Images/logo.png" />
+                </header>
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.UsuarioNomeUsuario, new { htmlAttributes = new { @id = "nomedeusuario", @placeholder = "Nome de Usuário", @required = "required" } })
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        @Html.EditorFor(model => model.UsuarioSenha, new { htmlAttributes = new { @id = "senha", @placeholder = "Senha", @type="password", @required = "required" } })
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Entrar" class="button special scrolly" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

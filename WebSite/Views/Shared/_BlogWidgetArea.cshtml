@@ -1,0 +1,20 @@
+﻿<div class="col-md-3 col-sm-4 col-xs-12 widget-area no-left-padding">
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div style="width: 100%; text-align: center; margin-bottom: 20px;">
+            @Html.ActionLink("Novo Post", "Create", "Blog", new {@class = "btn btn-primary"})
+        </div>
+    }
+
+    <!-- Widget Search -->
+    <aside class="widget widget-search">
+        <h3 class="widget-title">Pesquisar</h3>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Digite aqui">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </aside><!-- Widget Search /- -->
+</div>

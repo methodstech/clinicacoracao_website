@@ -1,0 +1,40 @@
+﻿<link rel="stylesheet" href="~/Content/main.css" />
+
+@model AppServices.Dtos.RitmoDto
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.RitmoId)
+
+    <section id="create_ritmo" class="main special">
+        <div class="container">
+            @*<span class="image fit primary"><img src="~/Images/pic01.jpg" alt="" /></span>*@
+            <div class="content">
+                <header class="major">
+                    <h2>Alterar ritmo</h2>
+                </header>
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)">
+                        @Html.EditorFor(model => model.RitmoCodigo, new { htmlAttributes = new { @placeholder = "Código", @required = "required", @type = "text" } })
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        @Html.EditorFor(model => model.RitmoDescricao, new { htmlAttributes = new { @placeholder = "Descrição", @required = "required", @type = "text" } })
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li>@Html.ActionLink("Cancelar", "Index", "Ritmo", null, new { @class = "button special scrolly" })</li>
+                            <li><input type="submit" value="Alterar" class="button special scrolly" /></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}

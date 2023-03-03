@@ -1,0 +1,111 @@
+﻿@model AppServices.Dtos.LaudoDto
+
+@{
+    ViewBag.Title = "Novo";
+}
+
+<link rel="stylesheet" href="~/Content/jquery-ui.min.css" />
+
+<section id="one" class="main special">
+    <div class="container">
+        <div class="content">
+            <header class="major">
+                <h2>Detalhes Laudo</h2>
+            </header>
+            <section>
+                <div class="row uniform">
+                    <div class="6u 12u$(xsmall)" style="text-transform: capitalize">
+                        Nome Paciente: @Html.DisplayFor(m => m.LaudoPaciente.PacienteNome)
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                       Data Nascimento: @Html.DisplayFor(m => m.LaudoPaciente.PacienteDataNascimento, new { @id = "pacienteDtNasc" })
+                    </div>
+                </div>
+                
+                    <div style="background-color:#cf3c40; height:1px; width:auto; margin: 20px 0 20px 0"></div>
+               
+                
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Data de cadastro</th>
+                                    <td>@Html.DisplayFor(m => m.LaudoDtCadastro)</td>
+                                </tr>
+                                <tr>
+                                    <th>Data de realização</th>
+                                    <td>@Html.DisplayFor(m => m.LaudoDtRealizacao)</td>
+                                </tr>
+                                <tr>
+                                    <th>Convênio</th>
+                                    <td>@Html.DisplayFor(m => m.LaudoConvenio.ConvenioNome)</td>
+                                </tr>
+                                <tr>
+                                    <th>Laudador</th>
+                                    <td>@Html.DisplayFor(m => m.LaudoMedicoLaudador.MedicoNome)</td>
+                                </tr>
+                                <tr>
+                                    <th>Solicitante</th>
+                                    <td>@Html.DisplayFor(m => m.LaudoMedicoSolicitante.MedicoNome)</td>
+                                </tr>
+                                <tr>
+                                    <th>Ritmo</th>
+                                    <td>@Html.DisplayFor(m => m.LaudoRitmo.RitmoDescricao)</td>
+                                </tr>
+                                <tr>
+                                    <th>Conlusão</th>
+                                    <td>
+                                        @foreach (var item in Model.LaudoConclusoes)
+                                        {
+                                            @item.ConclusaoDescricao <br />
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Complemento</th>
+                                    @Html.DisplayFor(m => m.LaudoComplemento)
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+            </section>
+
+        </div>
+    </div>
+</section>
+
+
+@{
+    var dia = Model.LaudoPaciente.PacienteDataNascimento.ToString("dd");
+    var mes = Model.LaudoPaciente.PacienteDataNascimento.ToString("MM");
+    var ano = Model.LaudoPaciente.PacienteDataNascimento.ToString("yyyy");
+    var dtNascimento = Model.LaudoPaciente.PacienteDataNascimento.ToString("dd/MM/yyyy");
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#pacienteIdade").text(getIdade('@Html.Raw(ano)', '@Html.Raw(mes)', '@Html.Raw(dia)'));
+            $("#pacienteDtNasc").val('@Html.Raw(dtNascimento)');
+        });
+
+        function getIdade(ano, mes, dia) {
+            var date = new Date();
+            var a = date.getFullYear();
+            var m = (date.getMonth() + 1);
+            var d = (date.getUTCDate());
+
+            var idade = a - ano;
+
+            if (m < mes || (m = mes && d < dia)) {
+                idade = idade - 1;
+            }
+
+            return idade;
+        }
+    </script>
+}

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{534FFB41-24AF-4AB1-AA60-CEB58001EECA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\BlogPost.cs" />
+    <Compile Include="Entities\Conclusao.cs" />
+    <Compile Include="Entities\Convenio.cs" />
+    <Compile Include="Entities\Laudo.cs" />
+    <Compile Include="Entities\Medico.cs" />
+    <Compile Include="Entities\Paciente.cs" />
+    <Compile Include="Entities\RelatorioHistoricoPaciente.cs" />
+    <Compile Include="Entities\RelatorioRitmoConclusao.cs" />
+    <Compile Include="Entities\RelatorioRitmoConclusaoDetalhes.cs" />
+    <Compile Include="Entities\Ritmo.cs" />
+    <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Filters\BlogPostFilter.cs" />
+    <Compile Include="Filters\ConclusaoFilter.cs" />
+    <Compile Include="Filters\ConvenioFilter.cs" />
+    <Compile Include="Filters\LaudoFilter.cs" />
+    <Compile Include="Filters\MedicoFilter.cs" />
+    <Compile Include="Filters\PacienteFilter.cs" />
+    <Compile Include="Filters\RelatorioHistoricoPacienteFilter.cs" />
+    <Compile Include="Filters\RelatorioRitmoConclusaoFilter.cs" />
+    <Compile Include="Filters\RitmoFilter.cs" />
+    <Compile Include="Filters\UsuarioFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IBlogPostRepository.cs" />
+    <Compile Include="Repositories\IConclusaoRepository.cs" />
+    <Compile Include="Repositories\IConvenioRepository.cs" />
+    <Compile Include="Repositories\ILaudoRepository.cs" />
+    <Compile Include="Repositories\IMedicoRepository.cs" />
+    <Compile Include="Repositories\IPacienteRepository.cs" />
+    <Compile Include="Repositories\IRelatorioRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IRitmoRepository.cs" />
+    <Compile Include="Repositories\IUsuarioRepository.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

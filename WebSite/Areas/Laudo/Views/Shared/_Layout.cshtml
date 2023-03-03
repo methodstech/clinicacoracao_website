@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software de Laudo - Clínica do Coração</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/Content/bootstrap-datetimepicker.min.css" type="text/css" />
+</head>
+<body>
+
+    @if (TempData["success"] != null)
+    {
+        var str = TempData["success"].ToString();
+        <script>
+            alert('@Html.Raw(str)');
+        </script>
+        TempData["success"] = null;
+    }
+    @if (TempData["error"] != null)
+    {
+        var str2 = TempData["error"].ToString();
+        <script>
+            alert('ERRO: ' + '@Html.Raw(str2)');
+        </script>
+        TempData["error"] = null;
+    }
+
+    @Html.Partial("~/Areas/Laudo/Views/Shared/_Header.cshtml")
+
+    <div>
+        @if (Request.IsAuthenticated)
+        {
+            <p class="container text-right small" style="padding: 0px 30px 0px 0px;">Bem vindo, @User.Identity.Name.Split('|')[2]</p>
+        }
+
+        @RenderBody()
+    </div>
+
+    <hr style="color:#cdcdcd" />
+    @Html.Partial("~/Areas/Laudo/Views/Shared/_Footer.cshtml")
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<script src="~/Scripts/jquery.scrollex.min.js"></script>
+@*<script src="~/Scripts/jquery.scrolly.min.js"></script>*@
+<script src="~/Scripts/skel.min.js"></script>
+<script src="~/Scripts/util.js"></script>
+<script src="~/Scripts/mascara-data.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Scripts/locales/bootstrap-datetimepicker.pt-BR.js"></script>
+@*<script src="~/Scripts/main.js"></script>*@
+
+@RenderSection("Scripts", false)

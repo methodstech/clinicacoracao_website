@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clínica do Coração SL</title>
+
+    <meta property="og:title" content="Clínica do Coração SL" />
+    <meta property="og:url" content="http://www.bmedcardio.com.br/" />
+    <meta property="og:description" content="Site da Clínica do Coração SL">
+    <meta property="og:image" content="http://www.bmedcardio.com.br/Images/favicon_png.png">
+
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/Images/favicon.ico" />
+
+    <!-- For iPhone 4 Retina display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Images/favicon.ico">
+
+    <!-- For iPad: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Images/favicon.ico">
+
+    <!-- For iPhone: -->
+    <link rel="apple-touch-icon-precomposed" href="~/Images/favicon.ico">
+
+    <!-- Library - Loader CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/loaders.min.css">
+
+    <!-- Library - Google Font Familys -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
+
+    <!-- Library - Bootstrap v3.3.5 -->
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+
+    <!-- Font Icons -->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/elegant-icons.css">
+
+    <!-- Library - OWL Carousel V.2.0 beta -->
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
+
+    <!-- Library - Animate CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/animate.min.css">
+
+    <!-- Library - Magnific Popup -->
+    <link rel="stylesheet" type="text/css" href="~/Content/magnific-popup.css">
+
+    <!-- Custom - Common CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/navigation-menu.css">
+
+    <!--[if IE]>
+        <link rel="stylesheet" type="text/css" href="css/all-ie-only.css"/>
+    <![endif]-->
+    <!-- Custom - Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/shortcodes.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/style2.css">
+
+
+
+</head>
+
+<body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
+    <!-- Loader -->
+    <div id="site-loader" class="load-complete">
+        <div class="loader">
+            <div class="loader-inner ball-clip-rotate">
+                <div></div>
+            </div>
+        </div>
+    </div><!-- Loader /- -->
+
+    <a id="top"></a>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header-main">
+
+            <!-- Logo Block -->
+            <div class="middle-header container-fluid no-padding">
+                <!-- Container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 logo-block pull-left">
+                            <img src="~/Images/logo.png" alt="Clínica do Coração" style="height: 100px;"/>
+                        </div>
+                        <div class="col-md-9 text-right pull-right info-clinica">
+                            <div class="location">
+                                <h3>
+                                    <img src="~/Images/location-ic.png" alt="Location" /> Nossa Localização
+                                </h3>
+                                <p>Av. João Gualberto, 2009 - Juvevê, Curitiba-PR</p>
+                            </div>
+                            <div class="phone">
+                                <h3>
+                                    <img src="~/Images/phone-ic.png" alt="Phone" /> (41) 3016-8080
+                                </h3>
+                                <p>Atendimento: Segunda-Sexta: 07h30-20h. Sábado: 8h-13h.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Container -->
+            </div><!-- Logo Block /- -->
+            <!-- Navigation -->
+            <nav class="navbar ow-navigation">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse" style="width: 100%; ">
+                            <ul class="nav navbar-nav" >
+                                <li id="menu-home" class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li id="menu-sobre">@Html.ActionLink("Sobre Nós", "Index", "About")</li>
+                                <li id="menu-equipe">@Html.ActionLink("Equipe", "Index", "Team")</li>
+                                <li id="menu-servicos">@Html.ActionLink("Serviços", "Index", "Services")</li>
+                                <li id="menu-blog">@Html.ActionLink("Blog", "Index", "Blog")</li>
+                                <li id="menu-contato">@Html.ActionLink("Contato", "Index", "Contact")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        @RenderBody()
+        <hr />
+
+
+        <footer class="footer-main container-fluid no-padding">
+            <!-- Container -->
+            <div class="container">
+                <!-- Contact Detail -->
+                <div class="contact-details">
+                    <div class="col-md-4 col-sm-4 address-box detail-box" style="min-height: 150px">
+                        <i>
+                            <img src="~/Images/ftr-location.png" alt="Loactaion" />
+                        </i>
+                        <h4>endereço</h4>
+                        <p>Rua João Gualberto, 2009, em frente ao Hospital São Lucas</p>
+                        @*<p>Av. João Gualberto, 2009</p>*@
+                        <p>Juvevê, Curitiba, PR</p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 phone-box detail-box" style="min-height: 150px">
+                        <i><img src="~/Images/ftr-phone.png" alt="Phone" /></i>
+                        <h4>telefone</h4>
+                        <p style="margin-bottom:20px">(41) 3016-8080</p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 mail-box detail-box" style="min-height: 150px">
+                        <i>
+                            <img src="~/Images/ftr-email.png" alt="Email" />
+                        </i>
+                        <h4>e-mail</h4>
+                        <p>
+                            <a href="mailto:contato@clinicadocoracaosl.com.br">contato@clinicadocoracaosl.com.br</a>
+                        </p>
+                        <p>
+                            <a href="mailto:sac@clinicadocoracaosl.com.br">sac@clinicadocoracaosl.com.br</a>
+                        </p>
+                    </div>
+                </div><!-- Contact Detail /- -->
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <aside class="widget widget-about">
+                            <h3><img src="~/Images/logo-branca.png" alt="Logo" /></h3>
+                            @*<p>A Clínica do Coração cuida da sua circulação!</p>*@
+                            @*<div class="time-schedule">
+                                <p>Segunda - Sexta <span>7.30 - 20.00</span></p>
+                                <p>Sábado <span>8.00 - 13.00</span></p>
+                            </div>*@
+
+                        </aside>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <aside class="widget widget-links">
+                            <h3 class="widget-title">A Clínica</h3>
+                            <ul>
+
+                                <li>@Html.ActionLink("Sobre Nós", "Index", "About")</li>
+                                <li>@Html.ActionLink("Nossos Serviços", "Index", "Services")</li>
+                                <li>@Html.ActionLink("Nossa Equipe", "Index", "Team")</li>
+                                <li>@Html.ActionLink("Fale Conosco", "Index", "Contact")</li>
+                                
+
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <aside class="widget widget-about">
+                            <h3 class="widget-title">Horário de Atendimento</h3>
+                            <div class="time-schedule">
+                                <p>Segunda - Sexta <span>7.30 - 20.00</span></p>
+                                <p>Sábado <span>8.00 - 13.00</span></p>
+                            </div>
+                        </aside>
+                        <aside class="widget widget-newsletter">
+                            @*<h3 class="widget-title">Newsletter</h3>
+                            <p>Quer mais notícias? Se cadastre e receba nossas newsletters.</p>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Endereço de E-mail">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-send-o"></i>
+                                    </button>
+                                </span>
+                            </div>*@<!-- /input-group -->
+                            <div class="social">
+                                <h6>Mantenha-se Conectado</h6>
+                                <ul>
+                                    <li><a target="_blank" rel=noopener href="https://goo.gl/X3vqwt" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div><!-- Container /- -->
+            <!-- Bottom Footer -->
+            <div class="container-fluid no-padding bottom-footer">
+                <p>&copy; @DateTime.Now.Year Method's Tecnologia Ltda. All Rights Reserved.</p>
+            </div><!-- Bottom Footer /- -->
+        </footer>
+
+    </div><!-- Main Container -->
+    <!-- JQuery v1.11.3 -->
+    <script src="~/Scripts/jquery.min.js"></script>
+
+    <!-- Library - Modernizer -->
+    <script src="~/Scripts/modernizr.js"></script>
+
+    <!-- Library - Bootstrap v3.3.5 -->
+    <script src="~/Scripts/bootstrap.min.js"></script><!-- Bootstrap JS File v3.3.5 -->
+    <!-- jQuery Easing v1.3 -->
+    <script src="~/Scripts/jquery.easing.min.js"></script>
+
+    <!-- Library - jQuery.appear -->
+    <script src="~/Scripts/jquery.appear.js"></script>
+
+    <!-- Library - OWL Carousel V.2.0 beta -->
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+
+    <!-- jQuery For Number Counter -->
+    <script src="~/Scripts/jquery.animateNumber.min.js"></script>
+
+    <!-- Library - Isotope Portfolio Filter -->
+    <script src="~/Scripts/isotope.pkgd.min.js"></script>
+
+    <!-- Library - Magnific Popup - v1.0.0 -->
+    <script src="~/Scripts/jquery.magnific-popup.min.js"></script>
+
+    <!-- Library - Google Map API -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+    <!-- Library - Theme JS -->
+    <script src="~/Scripts/functions.js"></script>
+
+    <script>
+        function corrigeClasseActive(menu) {
+            $("#menu-home").removeClass("active");
+            $("#menu-servicos").removeClass("active");
+            $("#menu-sobre").removeClass("active");
+            $("#menu-equipe").removeClass("active");
+            $("#menu-contato").removeClass("active");
+            $("#menu-blog").removeClass("active");
+
+            $(menu).addClass("active");
+        }
+    </script>
+
+    @RenderSection("Scripts", false)
+
+</body>
+
+</html>

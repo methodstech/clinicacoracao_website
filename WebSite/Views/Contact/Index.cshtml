@@ -1,0 +1,205 @@
+﻿@model WebSite.Models.Contato
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<!-- Page Banner -->
+<div class="page-banner contact-banner container-fluid no-padding">
+    <!-- Container -->
+    <div class="container">
+        <h3>Contato</h3>
+        <p>Entre em contato conosco para maiores informações.</p>
+        @*<ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li class="active">Contato</li>
+        </ol>*@
+    </div><!-- Container /- -->
+    <!-- Shape -->
+    <div class="banner-shape container-fluid no-padding">
+        <div class="col-md-6 col-sm-6 col-xs-6 shape-left no-padding">
+            <div class="left-shape-blue">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon2" clipPathUnits="objectBoundingBox">
+                        <polygon points="0 0, 0 100, 120 100, 0 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+            <div class="left-shape">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon1" clipPathUnits="objectBoundingBox">
+                        <polygon points="0 0, 0 100, 100 100, 0 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 shape-right no-padding">
+            <div class="right-shape-blue">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon3" clipPathUnits="objectBoundingBox">
+                        <polygon points="1 0.2, 0 1, 0 0.835, 1 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+            <div class="right-shape">
+                <svg width="100%" height="100%">
+                    <clipPath id="clipPolygon4" clipPathUnits="objectBoundingBox">
+                        <polygon points="1 0, 0 1, 100 100, 100 0"></polygon>
+                    </clipPath>
+                </svg>
+            </div>
+        </div>
+    </div><!-- Shape -->
+</div><!-- Page Banner /- -->
+<!-- Container -->
+<div class="container">
+    <!-- Contact Us -->
+    <div class="contact-us">
+        <div class="col-md-4 col-sm-4">
+            <div class="contact-block">
+                <i class="fa fa-map-marker"></i>
+                <span>Endereço</span>
+                <p>Av. João Gualberto, 2009</p>
+                <p>Juvevê, Curitiba, PR</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="contact-block">
+                <i class="fa fa-mobile"></i>
+                <span>Telefone</span>
+                <p>(41) 3016-8080</p>
+                <p>(41) 99685-0187</p>
+                <p>(41) 99911-7714</p>
+                <p>*também WhatsApp</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="contact-block">
+                <i class="fa fa-envelope"></i>
+                <span>E-mail</span>
+                <p><a title="Mailto" href="mailto:contato@clinicadocoracaosl.com.br">contato@clinicadocoracaosl.com.br</a></p>
+                <p><a title="Mailto" href="mailto:sac@clinicadocoracaosl.com.br">sac@clinicadocoracaosl.com.br</a></p>
+            </div>
+        </div>
+    </div><!-- Contact Us /- -->
+</div><!-- Container /- -->
+<!-- Map Section -->
+<div class="map container-fluid no-padding">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.8039769208426!2d-49.2590428849862!3d-25.41137138379697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce424289426d3%3A0x67412cfef80dab57!2sAv.+Jo%C3%A3o+Gualberto%2C+1974+-+Alto+da+Gl%C3%B3ria%2C+Curitiba+-+PR%2C+80030-001!5e0!3m2!1spt-BR!2sbr!4v1525894176386" frameborder="0" style="border: 0; width: 100%; height: 450px; margin: 0 0 40px 0; padding: 0; line-height: normal" allowfullscreen="" class="scrolloff"></iframe>
+    @*<iframe id="map" src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d450.4101277226757!2d-49.26446273787563!3d-25.4288666804683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x94dce46abeb9f0c3%3A0x40111079d9c73873!2smethods+informatica!3m2!1d-25.4290153!2d-49.264534!5e0!3m2!1spt-BR!2sbr!4v1496178554411&amp;output=embed&amp;iwloc" frameborder="0" style="border: 0; width: 100%; height: 450px; margin: 0; padding: 0; line-height: normal" allowfullscreen="" class="scrolloff"></iframe>*@
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8GFA6WWVIHu-FBJyB0a2lKBQozhjPeg4&callback=initMap" async defer></script>*@
+    @*<div class="map-canvas" id="map-canvas-contact" data-lat="-37.818415" data-lng="144.989050" data-string="E-44, Design Street, Web Corner, Melbourne - 005" data-zoom="12"></div>*@
+    @*<div class="map-canvas" id="map-canvas-contact" data-lat="-25.411253" data-lng="-49.256857" data-string="Avenida João Gualberto, 1974 Alto da Glória, Curitiba - PR." data-zoom="12"></div>*@
+</div><!--  Map Section /- -->
+
+
+@using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { enctype = "multipart/form-data", @class = "comment-form enquiry-form", @id="myform" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="container">
+        <div class="leave-comment enquiry-us">
+            <h3 class="section-heading">Fale conosco</h3>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label>Nome*</label>
+                        <input type="text" name="Nome" class="form-control" id="input_name" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>E-Mail*</label>
+                        <input type="email" name="Email" class="form-control" id="input_email" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="text" name="Telefone" class="form-control" id="input_phone"/>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                        <label>Mensagem*</label>
+                        <textarea class="form-control" name="Mensagem" id="textarea_message" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Enviar" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script>
+
+        corrigeClasseActive("#menu-contato");
+
+        $("#myform").submit(function(e) {
+            e.preventDefault();
+            enviarEmail();
+        });
+
+        function hideLoading() {
+            if ( !$('html').is('.ie6, .ie7, .ie8') ) {
+                $("#site-loader").delay(1000).fadeOut("slow");
+            }
+            else {
+                $("#site-loader").css('display','none');
+            }
+        }
+
+        function showLoading() {
+            if (!$('html').is('.ie6, .ie7, .ie8')) {
+                $("#site-loader").delay(1000).show("slow");
+            }
+            else {
+                $("#site-loader").css('display', 'block');
+            }
+        }
+
+        function enviarEmail() {
+
+            showLoading();
+
+            var nome = $("#input_name").val();
+            var email = $("#input_email").val();
+            var telefone = $("#input_phone").val();
+            var mensagem = $("#textarea_message").val();
+
+            var model = {
+                Nome: nome,
+                Email: email,
+                Telefone: telefone,
+                Mensagem: mensagem
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '@(Url.Action("EnviarEmail", "Contact"))',
+                data: model,
+                success: function(data) {
+                    alert(data);
+                    $("#input_name").val('');
+                    $("#input_email").val('');
+                    $("#input_phone").val('');
+                    $("#textarea_message").val('');
+                    hideLoading();
+                },
+                statusCode: {
+                    404: function(content) { alert('Método não encontrado.'); },
+                    500: function(content) { alert('Erro interno do servidor'); }
+                },
+                error: function(xhr, err) {
+                    // ignored
+                    hideLoading();
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,34 @@
+﻿[
+  {
+    "outputFile": "Content/sass/main.css",
+    "inputFile": "Content/sass/main.scss"
+  },
+  {
+    "outputFile": "Content/sass/_bootstrap.css",
+    "inputFile": "Content/sass/_bootstrap.scss"
+  },
+  {
+    "outputFile": "Content/sass/stylearealaudo.css",
+    "inputFile": "Content/sass/stylearealaudo.scss"
+  },
+  {
+    "outputFile": "Content/sass/stylesite.css",
+    "inputFile": "Content/sass/stylesite.scss"
+  },
+  {
+    "outputFile": "Content/sass/libs/_functions.css",
+    "inputFile": "Content/sass/libs/_functions.scss"
+  },
+  {
+    "outputFile": "Content/sass/libs/_mixins.css",
+    "inputFile": "Content/sass/libs/_mixins.scss"
+  },
+  {
+    "outputFile": "Content/sass/libs/_skel.css",
+    "inputFile": "Content/sass/libs/_skel.scss"
+  },
+  {
+    "outputFile": "Content/sass/libs/_vars.css",
+    "inputFile": "Content/sass/libs/_vars.scss"
+  }
+]
